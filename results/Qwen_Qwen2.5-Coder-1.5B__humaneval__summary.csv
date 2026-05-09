@@ -1,0 +1,15 @@
+Model,Benchmark,Variant,Samples,Pass@1,SuccessExecRate
+Qwen/Qwen2.5-Coder-1.5B,humaneval,original,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_1.ambiguous,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_1.contradictory,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_1.incomplete,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_2.lexical_vagueness__lv,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_2.syntax_and_formatting_sf,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_2.under-specification_us,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_3.ambiguous,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_3.ambiguous_and_contradictory,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_3.ambiguous_and_incomplete,9,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_3.ambiguous_contradictory_and_incomplete,1,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_3.contradictory,10,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_3.contradictory_and_incomplete,1,0.0,0.0
+Qwen/Qwen2.5-Coder-1.5B,humaneval,paper_3.incomplete,10,0.0,0.0

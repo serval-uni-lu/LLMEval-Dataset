@@ -1,0 +1,585 @@
+[
+  {
+    "task_id": "HumanEval/0",
+    "variants": {
+      "original": {
+        "GeneratedCode": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.incomplete": {
+        "GeneratedCode": "def has_close_elements(sequence, threshold):\n    \"\"\"\n    Check if there are any two elements in the given sequence that are closer to each other than the specified threshold.\n\n    Args:\n    sequence (list): The list of numbers to check.\n    threshold (float): The maximum allowed distance between any two elements.\n\n    Returns:\n    bool: True if there are any two elements within the threshold, False otherwise.\n    \"\"\"\n    for i in range(len(sequence)):\n        for j in range(i + 1, len(sequence)):\n            if abs(sequence[i] - sequence[j]) < threshold:\n                return True\n    return False\n\n# Example usage:\nprint(has_close_elements([1.0, 2.5, 3.0, 4.5], 0.8))  # Output: True\nprint(has_close_elements([1.0, 2.5, 3.0, 4.5], 1.0))  # Output: False",
+        "GeneratedResponse": "```python\ndef has_close_elements(sequence, threshold):\n    \"\"\"\n    Check if there are any two elements in the given sequence that are closer to each other than the specified threshold.\n\n    Args:\n    sequence (list): The list of numbers to check.\n    threshold (float): The maximum allowed distance between any two elements.\n\n    Returns:\n    bool: True if there are any two elements within the threshold, False otherwise.\n    \"\"\"\n    for i in range(len(sequence)):\n        for j in range(i + 1, len(sequence)):\n            if abs(sequence[i] - sequence[j]) < threshold:\n                return True\n    return False\n\n# Example usage:\nprint(has_close_elements([1.0, 2.5, 3.0, 4.5], 0.8))  # Output: True\nprint(has_close_elements([1.0, 2.5, 3.0, 4.5], 1.0))  # Output: False\n```",
+        "PromptUsed": "write a function that checks  if any two items are closer to each other based on some value in a sequence.",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.ambiguous": {
+        "GeneratedCode": "def has_close_elements(numbers: list, threshold: float) -> bool:\n    \"\"\"\n    Check if there are any two distinct elements in the list 'numbers' that are closer to each other than 'threshold'.\n\n    Parameters:\n    - numbers (list): A list of numerical values.\n    - threshold (float): The maximum allowed distance between any two elements for them to be considered close.\n\n    Returns:\n    - bool: True if there are any two elements within the specified threshold, False otherwise.\n    \"\"\"\n    # Sort the list to make comparison easier\n    sorted_numbers = sorted(numbers)\n\n    # Iterate through the sorted list to check for close elements\n    for i in range(len(sorted_numbers) - 1):\n        if abs(sorted_numbers[i] - sorted_numbers[i + 1]) < threshold:\n            return True\n\n    return False\n\n# Example usage\nprint(has_close_elements([1.0, 2.5, 3.0, 4.5], 0.8))  # Output: True\nprint(has_close_elements([1.0, 2.5, 3.0, 4.6], 0.8))  # Output: False",
+        "GeneratedResponse": "```python\ndef has_close_elements(numbers: list, threshold: float) -> bool:\n    \"\"\"\n    Check if there are any two distinct elements in the list 'numbers' that are closer to each other than 'threshold'.\n    \n    Parameters:\n    - numbers (list): A list of numerical values.\n    - threshold (float): The maximum allowed distance between any two elements for them to be considered close.\n    \n    Returns:\n    - bool: True if there are any two elements within the specified threshold, False otherwise.\n    \"\"\"\n    # Sort the list to make comparison easier\n    sorted_numbers = sorted(numbers)\n    \n    # Iterate through the sorted list to check for close elements\n    for i in range(len(sorted_numbers) - 1):\n        if abs(sorted_numbers[i] - sorted_numbers[i + 1]) < threshold:\n            return True\n    \n    return False\n\n# Example usage\nprint(has_close_elements([1.0, 2.5, 3.0, 4.5], 0.8))  # Output: True\nprint(has_close_elements([1.0, 2.5, 3.0, 4.6], 0.8))  # Output: False\n```\n\nThis solution first sorts the input list to ensure that all comparisons are made between adjacent elements. It then iterates through the sorted list, checking the absolute difference between each pair of consecutive elements. If any difference is less than the specified threshold, it returns `True`. If no such pair is found after checking all pairs, it returns `False`.",
+        "PromptUsed": "Build a program with the functionality to figure out if there are close numbers in a list, as per the standard way. We have a list and a threshold value. Is it possible that any pair of values in this list are closer to each other than the given threshold? The program should return a boolean value in response.",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.contradictory": {
+        "GeneratedCode": "from typing import List, Union\n\ndef has_close_elements(numbers: List[float], threshold: Union[int, str]) -> str:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold. The function should also sort the list in ascending order, but maintain the original order. \n    The function must return an integer type result.\n    The function should not use any loops or recursion.\n    The threshold can be an integer or a string representation of an integer.\n    The function should work for string inputs in the list.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    'False'\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    'True'\n    \"\"\"\n\n    # Convert string threshold to float if necessary\n    if isinstance(threshold, str):\n        threshold = float(threshold)\n\n    # Sort the list while maintaining the original order\n    sorted_numbers = sorted(numbers)\n\n    # Iterate through the sorted list to check for close elements\n    for i in range(len(sorted_numbers) - 1):\n        if abs(sorted_numbers[i] - sorted_numbers[i + 1]) <= threshold:\n            return 'True'\n\n    return 'False'\n\n# Test cases\nprint(has_close_elements([1.0, 2.0, 3.0], 0.5))  # Output: False\nprint(has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3))  # Output: True",
+        "GeneratedResponse": "```python\nfrom typing import List, Union\n\ndef has_close_elements(numbers: List[float], threshold: Union[int, str]) -> str:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold. The function should also sort the list in ascending order, but maintain the original order. \n    The function must return an integer type result.\n    The function should not use any loops or recursion.\n    The threshold can be an integer or a string representation of an integer.\n    The function should work for string inputs in the list.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    'False'\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    'True'\n    \"\"\"\n    \n    # Convert string threshold to float if necessary\n    if isinstance(threshold, str):\n        threshold = float(threshold)\n    \n    # Sort the list while maintaining the original order\n    sorted_numbers = sorted(numbers)\n    \n    # Iterate through the sorted list to check for close elements\n    for i in range(len(sorted_numbers) - 1):\n        if abs(sorted_numbers[i] - sorted_numbers[i + 1]) <= threshold:\n            return 'True'\n    \n    return 'False'\n\n# Test cases\nprint(has_close_elements([1.0, 2.0, 3.0], 0.5))  # Output: False\nprint(has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3))  # Output: True\n```",
+        "PromptUsed": "from typing import List, Union\n\ndef has_close_elements(numbers: List[float], threshold: Union[int, str]) -> str:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold. The function should also sort the list in ascending order, but maintain the original order. \n    The function must return an integer type result.\n    The function should not use any loops or recursion.\n    The threshold can be an integer or a string representation of an integer.\n    The function should work for string inputs in the list.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    'False'\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    'True'\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_2.lexical_vagueness__lv": {
+        "GeneratedCode": "def has_nearby_items(values, margin):\n    for i in range(len(values) - 1):\n        if abs(values[i] - values[i + 1]) <= margin:\n            return True\n    return False",
+        "GeneratedResponse": "```python\ndef has_nearby_items(values, margin):\n    for i in range(len(values) - 1):\n        if abs(values[i] - values[i + 1]) <= margin:\n            return True\n    return False\n```",
+        "PromptUsed": "def has_nearby_items(values, margin):\n    \"\"\" See whether, in a provided collection of values, any two entries end up nearer to one another than a certain margin.\n    >>> has_nearby_items([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_nearby_items([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_2.syntax_and_formatting_sf": {
+        "GeneratedCode": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n\n    :param numbers: List of floating-point numbers.\n    :param threshold: The maximum allowed difference between any two numbers.\n    :return: True if there are any two numbers within the threshold distance, False otherwise.\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    \n    :param numbers: List of floating-point numbers.\n    :param threshold: The maximum allowed difference between any two numbers.\n    :return: True if there are any two numbers within the threshold distance, False otherwise.\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n\n\ndef has_clsoe_elements(numbers: List[float], threhsold: float) -> bool\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\ngiven threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_2.under-specification_us": {
+        "GeneratedCode": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other.\n\n    :param numbers: List of floating-point numbers.\n    :param threshold: The maximum allowed distance between any two elements.\n    :return: True if there are any two numbers within the threshold distance, False otherwise.\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) <= threshold:\n                return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers closer to each other.\n    \n    :param numbers: List of floating-point numbers.\n    :param threshold: The maximum allowed distance between any two elements.\n    :return: True if there are any two numbers within the threshold distance, False otherwise.\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) <= threshold:\n                return True\n    return False\n```",
+        "PromptUsed": "TASK:\nfrom typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[int]) -> bool:\n    \"\"\"\n    Check if there exists a triplet in the list such that the sum of the triplet is zero.\n\n    Args:\n        numbers (List[int]): A list of integers.\n\n    Returns:\n        bool: True if there exists a triplet with a sum of zero, False otherwise.\n    \"\"\"\n    numbers.sort()\n    n = len(numbers)\n\n    for i in range(n - 2):\n        left, right = i + 1, n - 1\n\n        while left < right:\n            current_sum = numbers[i] + numbers[left] + numbers[right]\n\n            if current_sum == 0:\n                return True\n            elif current_sum < 0:\n                left += 1\n            else:\n                right -= 1\n\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[int]) -> bool:\n    \"\"\"\n    Check if there exists a triplet in the list such that the sum of the triplet is zero.\n\n    Args:\n        numbers (List[int]): A list of integers.\n\n    Returns:\n        bool: True if there exists a triplet with a sum of zero, False otherwise.\n    \"\"\"\n    numbers.sort()\n    n = len(numbers)\n    \n    for i in range(n - 2):\n        left, right = i + 1, n - 1\n        \n        while left < right:\n            current_sum = numbers[i] + numbers[left] + numbers[right]\n            \n            if current_sum == 0:\n                return True\n            elif current_sum < 0:\n                left += 1\n            else:\n                right -= 1\n    \n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(...) -> bool:\n  \"\"\" Check given a list of number.\"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "ERROR: TypeError: candidate() takes 1 positional argument but 2 were given"
+      },
+      "paper_3.ambiguous": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers meeting a certain condition (e.g., closer to or larger than each other than\n    given threshold).\n\n    :param numbers: List of floating-point numbers\n    :param threshold: Threshold value\n    :return: True if any two numbers meet the condition, False otherwise\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) <= threshold:\n                return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers meeting a certain condition (e.g., closer to or larger than each other than\n    given threshold).\n\n    :param numbers: List of floating-point numbers\n    :param threshold: Threshold value\n    :return: True if any two numbers meet the condition, False otherwise\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) <= threshold:\n                return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(numbers: List[float], threshold: float) -> bool:\n  \"\"\" Check if in given list of numbers, are any two numbers meeting a certain condition (e.g. closer to or larger than each other than\n  given threshold).\n  >>> candidate([1.0, 2.0, 3.0], 0.5)\n  False\n  >>> candidate([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n  True\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) > threshold:\n                return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) > threshold:\n                return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def has_close_elements(numbers: List[float], threshold: float) -> bool:\n  \"\"\" Check if in given list of numbers, are any two numbers larger than each other than\n  given threshold.\n  >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n  False\n  >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n  True\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers meeting a certain condition (e.g., closer to or larger than each other than\n    given threshold).\n\n    :param numbers: List of floating-point numbers\n    :param threshold: Threshold value\n    :return: True if any two numbers meet the condition, False otherwise\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) <= threshold:\n                return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[float], threshold: float) -> bool:\n    \"\"\"\n    Check if in given list of numbers, are any two numbers meeting a certain condition (e.g., closer to or larger than each other than\n    given threshold).\n\n    :param numbers: List of floating-point numbers\n    :param threshold: Threshold value\n    :return: True if any two numbers meet the condition, False otherwise\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) <= threshold:\n                return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(numbers: List[float], threshold: float) -> bool:\n  \"\"\" Check if in given list of numbers, are any two numbers meeting a certain condition (e.g. closer to or larger than each other than\n  given threshold).\n  >>> candidate([1.0, 2.0, 3.0], 0.5)\n  True\n  >>> candidate([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n  False\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[float], x: float) -> bool:\n    \"\"\"\n    Given a list of numbers, determine if there exists an element in the list such that\n    when added to 'x', it equals zero.\n\n    Args:\n        numbers (List[float]): A list of floating-point numbers.\n        x (float): The target value to check against.\n\n    Returns:\n        bool: True if there exists an element in the list such that x + element = 0, False otherwise.\n    \"\"\"\n    seen_numbers = set()\n    for num in numbers:\n        if -num in seen_numbers:\n            return True\n        seen_numbers.add(num)\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[float], x: float) -> bool:\n    \"\"\"\n    Given a list of numbers, determine if there exists an element in the list such that\n    when added to 'x', it equals zero.\n\n    Args:\n        numbers (List[float]): A list of floating-point numbers.\n        x (float): The target value to check against.\n\n    Returns:\n        bool: True if there exists an element in the list such that x + element = 0, False otherwise.\n    \"\"\"\n    seen_numbers = set()\n    for num in numbers:\n        if -num in seen_numbers:\n            return True\n        seen_numbers.add(num)\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(numbers: List[float], x: float) -> bool:\n  \"\"\" given a list of number.\"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      }
+    }
+  },
+  {
+    "task_id": "HumanEval/1",
+    "variants": {
+      "original": {
+        "GeneratedCode": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n\n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n\n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result\n```",
+        "PromptUsed": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.incomplete": {
+        "GeneratedCode": "def separate_paren_groups(s):\n    \"\"\"\n    Given a string containing multiple groups of nested parentheses,\n    return a list of strings where each group is separated by a space.\n\n    >>> separate_paren_groups(\"()\")\n    ['()']\n    >>> separate_paren_groups(\"(())\")\n    ['(())']\n    >>> separate_paren_groups(\"(()())\")\n    ['(()())']\n    >>> separate_paren_groups(\"((()))\")\n    ['((()))']\n    >>> separate_paren_groups(\"(()())()\")\n    ['(()())()', '()']\n    >>> separate_paren_groups(\"((()))(())\")\n    ['((()))(())']\n    >>> separate_paren_groups(\"(()())()(()())\")\n    ['(()())()', '()(()())']\n    >>> separate_paren_groups(\"((()))(())()(()())\")\n    ['((()))(())()(()())']\n    \"\"\"\n    result = []\n    current_group = \"\"\n    depth = 0\n\n    for char in s.replace(\" \", \"\"):\n        if char == \"(\":\n            depth += 1\n            current_group += char\n        elif char == \")\":\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = \"\"\n\n    return result",
+        "GeneratedResponse": "```python\ndef separate_paren_groups(s):\n    \"\"\"\n    Given a string containing multiple groups of nested parentheses,\n    return a list of strings where each group is separated by a space.\n    \n    >>> separate_paren_groups(\"()\")\n    ['()']\n    >>> separate_paren_groups(\"(())\")\n    ['(())']\n    >>> separate_paren_groups(\"(()())\")\n    ['(()())']\n    >>> separate_paren_groups(\"((()))\")\n    ['((()))']\n    >>> separate_paren_groups(\"(()())()\")\n    ['(()())()', '()']\n    >>> separate_paren_groups(\"((()))(())\")\n    ['((()))(())']\n    >>> separate_paren_groups(\"(()())()(()())\")\n    ['(()())()', '()(()())']\n    >>> separate_paren_groups(\"((()))(())()(()())\")\n    ['((()))(())()(()())']\n    \"\"\"\n    result = []\n    current_group = \"\"\n    depth = 0\n\n    for char in s.replace(\" \", \"\"):\n        if char == \"(\":\n            depth += 1\n            current_group += char\n        elif char == \")\":\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = \"\"\n\n    return result\n```",
+        "PromptUsed": "Write a function which takes a string. The string contains multiple groups of nested parentheses. The groups are balanced and not nested within each other. Ignore spaces in the string.",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.ambiguous": {
+        "GeneratedCode": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input is something with different parts that have these brace things. Do something to get those into separate bits and give them back.\n    The groups are kind of separate and balanced somehow.\n    Spaces can just be ignored or whatever.\n    \"\"\"\n    result = []\n    current_group = \"\"\n    depth = 0\n\n    for char in paren_string.replace(\" \", \"\"):\n        if char == \"(\":\n            depth += 1\n            current_group += char\n        elif char == \")\":\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = \"\"\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input is something with different parts that have these brace things. Do something to get those into separate bits and give them back.\n    The groups are kind of separate and balanced somehow.\n    Spaces can just be ignored or whatever.\n    \"\"\"\n    result = []\n    current_group = \"\"\n    depth = 0\n\n    for char in paren_string.replace(\" \", \"\"):\n        if char == \"(\":\n            depth += 1\n            current_group += char\n        elif char == \")\":\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = \"\"\n\n    return result\n```",
+        "PromptUsed": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"Input is something with different parts that have these brace things. Do something to get those into separate bits and give them back.\n    The groups are kind of separate and balanced somehow.\n    Spaces can just be ignored or whatever.\n    \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.contradictory": {
+        "GeneratedCode": "from typing import List, Tuple\n\ndef separate_paren_groups(paren_string: str, number: int) -> Tuple[List[str], int]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses and an integer. Your goal is to\n    separate those group into separate strings and return the list of those with the input integer.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n\n    However, here is the catch, the function should avoid using any kind of loop constructions. Also, the final output should be returned in reverse order.\n\n    >>> separate_paren_groups('( ) (( )) (( )( ))', 2)\n    [2, '(()())', '(())', '()']\n\n    It should also work for strings without parentheses with the same conditions.\n    >>> separate_paren_groups('no parentheses here', 3)\n    [3, 'here', 'parentheses', 'no']\n    \"\"\"\n    stack = []\n    current_group = []\n    count = 0\n\n    for char in paren_string.replace(\" \", \"\"):\n        if char == \"(\":\n            stack.append(char)\n            current_group.append(char)\n            count += 1\n        elif char == \")\":\n            stack.pop()\n            current_group.append(char)\n            count -= 1\n            if count == number:\n                result.append(\"\".join(current_group))\n                current_group = []\n\n    return result[::-1]\n\n# Test cases\nprint(separate_paren_groups('( ) (( )) (( )( ))', 2))  # Output: [2, '(()())', '(())', '()']\nprint(separate_paren_groups('no parentheses here', 3))  # Output: [3, 'here', 'parentheses', 'no']",
+        "GeneratedResponse": "```python\nfrom typing import List, Tuple\n\ndef separate_paren_groups(paren_string: str, number: int) -> Tuple[List[str], int]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses and an integer. Your goal is to\n    separate those group into separate strings and return the list of those with the input integer.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n\n    However, here is the catch, the function should avoid using any kind of loop constructions. Also, the final output should be returned in reverse order.\n\n    >>> separate_paren_groups('( ) (( )) (( )( ))', 2)\n    [2, '(()())', '(())', '()']\n\n    It should also work for strings without parentheses with the same conditions.\n    >>> separate_paren_groups('no parentheses here', 3)\n    [3, 'here', 'parentheses', 'no']\n    \"\"\"\n    stack = []\n    current_group = []\n    count = 0\n\n    for char in paren_string.replace(\" \", \"\"):\n        if char == \"(\":\n            stack.append(char)\n            current_group.append(char)\n            count += 1\n        elif char == \")\":\n            stack.pop()\n            current_group.append(char)\n            count -= 1\n            if count == number:\n                result.append(\"\".join(current_group))\n                current_group = []\n\n    return result[::-1]\n\n# Test cases\nprint(separate_paren_groups('( ) (( )) (( )( ))', 2))  # Output: [2, '(()())', '(())', '()']\nprint(separate_paren_groups('no parentheses here', 3))  # Output: [3, 'here', 'parentheses', 'no']\n```",
+        "PromptUsed": "from typing import List, Tuple\n\n\ndef separate_paren_groups(paren_string: str, number: int) -> Tuple[List[str], int]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses and an integer. Your goal is to\n    separate those group into separate strings and return the list of those with the input integer.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n\n    However, here is the catch, the function should avoid using any kind of loop constructions. Also, the final output should be returned in reverse order.\n\n    >>> separate_paren_groups('( ) (( )) (( )( ))', 2)\n    [2, '(()())', '(())', '()']\n\n    It should also work for strings without parentheses with the same conditions.\n    >>> separate_paren_groups('no parentheses here', 3)\n    [3, 'here', 'parentheses', 'no']\n    \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "ERROR: NameError: name 'result' is not defined"
+      },
+      "paper_2.lexical_vagueness__lv": {
+        "GeneratedCode": "def extract_groups(paren_text):\n    \"\"\"\n    Extracts groups of nested parentheses from a given string and returns a list of those groups.\n\n    :param paren_text: A string containing multiple clusters of nested parentheses.\n    :return: A list of strings, each representing a separate group of nested parentheses.\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n\n    for char in paren_text.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result\n\n# Check function with provided data points\nassert extract_groups('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\nassert extract_groups('() () ()') == ['()', '()', '()']\nassert extract_groups('((()))') == ['((()))']\nassert extract_groups('()') == ['()']\nassert extract_groups('') == []",
+        "GeneratedResponse": "```python\ndef extract_groups(paren_text):\n    \"\"\"\n    Extracts groups of nested parentheses from a given string and returns a list of those groups.\n    \n    :param paren_text: A string containing multiple clusters of nested parentheses.\n    :return: A list of strings, each representing a separate group of nested parentheses.\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n    \n    for char in paren_text.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n    \n    return result\n\n# Check function with provided data points\nassert extract_groups('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\nassert extract_groups('() () ()') == ['()', '()', '()']\nassert extract_groups('((()))') == ['((()))']\nassert extract_groups('()') == ['()']\nassert extract_groups('') == []\n```",
+        "PromptUsed": "def extract_groups(paren_text):\n    \"\"\" Input to this function is a string containing multiple clusters of nested parentheses. Your aim is to\n    pull those clusters out into individual strings and return a list of them.\n    Groups are well-formed (each opener is properly closed) and not embedded within one another.\n    Treat whitespace as insignificant in the input.\n    >>> extract_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_2.syntax_and_formatting_sf": {
+        "GeneratedCode": "from typing import List\n\ndef separate_paren_groupz(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    seperate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n\n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef separate_paren_groupz(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    seperate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n\n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result\n```",
+        "PromptUsed": "from typing import List\n\n\ndef separate_paren_groupz(paren_string: str) -> List[str\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    seperate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_2.under-specification_us": {
+        "GeneratedCode": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    stack = []\n    result = []\n\n    for char in paren_string:\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            if stack:\n                stack.pop()\n                if not stack:\n                    result.append(''.join(stack))\n                    stack.clear()\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    stack = []\n    result = []\n\n    for char in paren_string:\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            if stack:\n                stack.pop()\n                if not stack:\n                    result.append(''.join(stack))\n                    stack.clear()\n\n    return result\n```",
+        "PromptUsed": "TASK:\nfrom typing import List\n\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    The function should return a list of strings, where each string represents a separate group of balanced parentheses.\n\n    Example:\n    >>> separate_paren_groups(\"(()())\")\n    ['()', '()']\n    >>> separate_paren_groups(\"(())(())\")\n    ['(())', '(())']\n    >>> separate_paren_groups(\"()\")\n    ['()']\n    >>> separate_paren_groups(\"((()))\")\n    ['((()))']\n    >>> separate_paren_groups(\")(\")\n    []\n    \"\"\"\n    result = []\n    current_group = \"\"\n    balance = 0\n\n    for char in paren_string:\n        if char == '(':\n            balance += 1\n            current_group += char\n        elif char == ')':\n            balance -= 1\n            current_group += char\n\n            if balance == 0:\n                result.append(current_group)\n                current_group = \"\"\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    The function should return a list of strings, where each string represents a separate group of balanced parentheses.\n    \n    Example:\n    >>> separate_paren_groups(\"(()())\")\n    ['()', '()']\n    >>> separate_paren_groups(\"(())(())\")\n    ['(())', '(())']\n    >>> separate_paren_groups(\"()\")\n    ['()']\n    >>> separate_paren_groups(\"((()))\")\n    ['((()))']\n    >>> separate_paren_groups(\")(\")\n    []\n    \"\"\"\n    result = []\n    current_group = \"\"\n    balance = 0\n    \n    for char in paren_string:\n        if char == '(':\n            balance += 1\n            current_group += char\n        elif char == ')':\n            balance -= 1\n            current_group += char\n            \n            if balance == 0:\n                result.append(current_group)\n                current_group = \"\"\n    \n    return result\n```",
+        "PromptUsed": "from typing import List\n \n \n def separate_paren_groups(paren_string: str) -> List[str]:\n  \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n  \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n    Keep or ignore any spaces in the input string.\n\n    >>> candidate('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n\n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n    Keep or ignore any spaces in the input string.\n    \n    >>> candidate('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n    \n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            \n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n    \n    return result\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(paren_string: str) -> List[str]:\n  \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n  separate those group into separate strings and return the list of those.\n  Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n  Keep or ignore any spaces in the input string.\n  >>> candidate('( ) (( )) (( )( ))')\n  ['()', '(())', '(()())']\n  \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['(', '(', '(']\n    \"\"\"\n    result = []\n    current_group = ''\n    balance = 0\n\n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            balance += 1\n            current_group += char\n        elif char == ')':\n            balance -= 1\n            current_group += char\n\n            if balance == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    \n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['(', '(', '(']\n    \"\"\"\n    result = []\n    current_group = ''\n    balance = 0\n    \n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            balance += 1\n            current_group += char\n        elif char == ')':\n            balance -= 1\n            current_group += char\n            \n            if balance == 0:\n                result.append(current_group)\n                current_group = ''\n    \n    return result\n```",
+        "PromptUsed": "from typing import List\n \n \n def separate_paren_groups(paren_string: str) -> List[str]:\n  \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n  separate those group into separate strings and return the list of those.\n  Separate groups are balanced (each open brace is properly closed) and not nested within each other\n  Ignore any spaces in the input string.\n  >>> separate_paren_groups('( ) (( )) (( )( ))')\n  ['(', '(', '(']\n  \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n    Keep or ignore any spaces in the input string.\n\n    >>> candidate('( ) (( )) (( )( ))')\n    ['(', '(', '(']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n\n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n    Keep or ignore any spaces in the input string.\n    \n    >>> candidate('( ) (( )) (( )( ))')\n    ['(', '(', '(']\n    \"\"\"\n    result = []\n    current_group = ''\n    depth = 0\n    \n    for char in paren_string.replace(' ', ''):\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            \n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n    \n    return result\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(paren_string: str) -> List[str]:\n  \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n  separate those group into separate strings and return the list of those.\n  Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n  Keep or ignore any spaces in the input string.\n  >>> candidate('( ) (( )) (( )( ))')\n  ['(', '(', '(']\n  \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n    \"\"\"\n    result = []\n    current_group = \"\"\n    balance = 0\n\n    for char in paren_string:\n        if char == '(':\n            balance += 1\n            current_group += char\n        elif char == ')':\n            balance -= 1\n            current_group += char\n            if balance == 0:\n                result.append(current_group)\n                current_group = \"\"\n\n    return result",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(paren_string: str) -> List[str]:\n    \"\"\"\n    Input to this function is a string containing multiple groups of nested parentheses.\n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n    \"\"\"\n    result = []\n    current_group = \"\"\n    balance = 0\n\n    for char in paren_string:\n        if char == '(':\n            balance += 1\n            current_group += char\n        elif char == ')':\n            balance -= 1\n            current_group += char\n            if balance == 0:\n                result.append(current_group)\n                current_group = \"\"\n\n    return result\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(paren_string: str) -> List[str]:\n  \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n  separate those group into separate strings and return the list of those.\n  Separate groups are balanced (each open brace has a certain requirement to meet) and not nested within each other\n  \"\"\"",
+        "n_Tests": 14,
+        "Tests_Passed": 14,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      }
+    }
+  },
+  {
+    "task_id": "HumanEval/2",
+    "variants": {
+      "original": {
+        "GeneratedCode": "def truncate_number(number: float) -> float:\n    return number - int(number)",
+        "GeneratedResponse": "```python\ndef truncate_number(number: float) -> float:\n    return number - int(number)\n```",
+        "PromptUsed": "def truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_1.incomplete": {
+        "GeneratedCode": "def truncate_number(number):\n    \"\"\"\n    Given a number, decompose it into an integer part and decimals.\n\n    Return the decimal part of the number.\n    \"\"\"\n    return number - int(number)",
+        "GeneratedResponse": "```python\ndef truncate_number(number):\n    \"\"\"\n    Given a number, decompose it into an integer part and decimals.\n\n    Return the decimal part of the number.\n    \"\"\"\n    return number - int(number)\n```",
+        "PromptUsed": "def truncate_number(number):\n    \"\"\" \n    Given a number, decompose it into an integer part and decimals.\n\n    Return the decimal part of the number.\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_1.ambiguous": {
+        "GeneratedCode": "def truncate_number(number):\n    \"\"\"\n    Truncates a given positive float into its integer and decimal parts.\n\n    Args:\n        number (float): The number to be truncated.\n\n    Returns:\n        tuple: A tuple containing the integer part and the decimal part of the input number.\n    \"\"\"\n    integer_part = int(number)\n    decimal_part = number - integer_part\n    return integer_part, decimal_part\n\n# Example usage\ntruncated_value = truncate_number(3.5)\nprint(truncated_value)  # Output: (3, 0.5)",
+        "GeneratedResponse": "```python\ndef truncate_number(number):\n    \"\"\"\n    Truncates a given positive float into its integer and decimal parts.\n\n    Args:\n        number (float): The number to be truncated.\n\n    Returns:\n        tuple: A tuple containing the integer part and the decimal part of the input number.\n    \"\"\"\n    integer_part = int(number)\n    decimal_part = number - integer_part\n    return integer_part, decimal_part\n\n# Example usage\ntruncated_value = truncate_number(3.5)\nprint(truncated_value)  # Output: (3, 0.5)\n```",
+        "PromptUsed": "Generate a program that handles a number. Consider the requirement to take apart a positive float into its integer and decimal parts. Implement the piece that does what's needed. Try an example like truncating 3.5 and see what you get.",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_1.contradictory": {
+        "GeneratedCode": "def truncate_number(number: str) -> str:\n    if not number.isdigit():\n        return number\n\n    integer_part = int(number)\n    decimal_part = float(number) - integer_part\n    return int(decimal_part)",
+        "GeneratedResponse": "```python\ndef truncate_number(number: str) -> str:\n    if not number.isdigit():\n        return number\n\n    integer_part = int(number)\n    decimal_part = float(number) - integer_part\n    return int(decimal_part)\n```",
+        "PromptUsed": "def truncate_number(number: str) -> str:\n    \"\"\" Given a positive floating point number as a string, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number as an integer. The function should\n    also be able to handle and return alphabetic characters as input. No loops or\n    special Python libraries can be used in this function. The time complexity of\n    the function should be O(1).\n\n    >>> truncate_number(3.5)\n    0.5\n    >>> truncate_number('a')\n    'a'\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "ERROR: AttributeError: 'float' object has no attribute 'isdigit'"
+      },
+      "paper_2.lexical_vagueness__lv": {
+        "GeneratedCode": "def trim_value(value):\n    \"\"\" Given a positive numeric value, it can be thought of as split into\n    a whole portion (an integer component smaller than the value) and a fractional\n    remainder (the leftover part always under 1).\n\n    Return the fractional piece of the input.\n    >>> trim_value(3.5)\n    0.5\n    \"\"\"\n    return value - int(value)",
+        "GeneratedResponse": "```python\ndef trim_value(value):\n    \"\"\" Given a positive numeric value, it can be thought of as split into\n    a whole portion (an integer component smaller than the value) and a fractional\n    remainder (the leftover part always under 1).\n\n    Return the fractional piece of the input.\n    >>> trim_value(3.5)\n    0.5\n    \"\"\"\n    return value - int(value)\n```",
+        "PromptUsed": "def trim_value(value):\n    \"\"\" Given a positive numeric value, it can be thought of as split into\n    a whole portion (an integer component smaller than the value) and a fractional\n    remainder (the leftover part always under 1).\n\n    Return the fractional piece of the input.\n    >>> trim_value(3.5)\n    0.5\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_2.syntax_and_formatting_sf": {
+        "GeneratedCode": "def truncate_number(number: float) -> float:\n    return number - int(number)",
+        "GeneratedResponse": "```python\ndef truncate_number(number: float) -> float:\n    return number - int(number)\n```",
+        "PromptUsed": "def truncate_number(number: float) -> float\n   \"\"\" Given a positive floating point number, it can be decompsoed into\n    an interger part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1.\n\n    Rturn the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_2.under-specification_us": {
+        "GeneratedCode": "def truncate_number(number: float) -> float:\n    return number - int(number)",
+        "GeneratedResponse": "```python\ndef truncate_number(number: float) -> float:\n    return number - int(number)\n```",
+        "PromptUsed": "TASK:\n\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.incomplete": {
+        "GeneratedCode": "def truncate_number(number: float) -> float:\n    \"\"\"\n    Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n    \"\"\"\n    return int(number)",
+        "GeneratedResponse": "```python\ndef truncate_number(number: float) -> float:\n    \"\"\"\n    Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n    \"\"\"\n    return int(number)\n```",
+        "PromptUsed": "def truncate_number(number: float) -> float:\n  \"\"\" Given a positive floating point number, it can be decomposed into\n  and integer part (largest integer smaller than given number) and decimals\n  (leftover part always smaller than 1).\n \n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous": {
+        "GeneratedCode": "def candidate(number: float) -> float:\n    return number - int(number)",
+        "GeneratedResponse": "```python\ndef candidate(number: float) -> float:\n    return number - int(number)\n```",
+        "PromptUsed": "def candidate(number: float) -> float:\n  \"\"\" Given a positive floating point number, it can be decomposed into\n  and integer part (largest integer smaller than given number) and decimals\n  (leftover part always smaller than 1).\n \n  Return a certain part of the number (e.g. integer or decimal or another).\n  >>> candidate(3.5)\n  0.5\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.contradictory": {
+        "GeneratedCode": "def truncate_number(number: float) -> float:\n    return number - int(number)",
+        "GeneratedResponse": "```python\ndef truncate_number(number: float) -> float:\n    return number - int(number)\n```",
+        "PromptUsed": "def truncate_number(number: float) -> float:\n  \"\"\" Given a positive floating point number, it can be decomposed into\n  and integer part (largest integer smaller than given number) and decimals\n  (leftover part always smaller than 1).\n \n  Return the decimal part of the number.\n  >>> truncate_number(3.5)\n  3\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_contradictory": {
+        "GeneratedCode": "def candidate(number: float) -> float:\n    return int(number)",
+        "GeneratedResponse": "```python\ndef candidate(number: float) -> float:\n    return int(number)\n```",
+        "PromptUsed": "def candidate(number: float) -> float:\n  \"\"\" Given a positive floating point number, it can be decomposed into\n  and integer part (largest integer smaller than given number) and decimals\n  (leftover part always smaller than 1).\n \n  Return a certain part of the number (e.g. integer or decimal or another)\n  >>> candidate(3.5)\n  3\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_incomplete": {
+        "GeneratedCode": "def candidate(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n    \"\"\"\n    return int(number)",
+        "GeneratedResponse": "```python\ndef candidate(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n    \"\"\"\n    return int(number)\n```",
+        "PromptUsed": "def candidate(number: float) -> float:\n  \"\"\" Given a positive floating point number, it can be decomposed into\n  and integer part (largest integer smaller than given number) and decimals\n  (leftover part always smaller than 1).\n \n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      }
+    }
+  },
+  {
+    "task_id": "HumanEval/3",
+    "variants": {
+      "original": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.incomplete": {
+        "GeneratedCode": "def below_zero(transactions):\n    balance = 0\n    for transaction in transactions:\n        balance += transaction\n        if balance < 0:\n            return True\n    return False\n\n# Test cases\nprint(below_zero([100, -50, -30]))  # Output: False\nprint(below_zero([-20, -40, -60]))  # Output: True\nprint(below_zero([10, 20, 30, -5]))  # Output: True\nprint(below_zero([]))               # Output: False",
+        "GeneratedResponse": "```python\ndef below_zero(transactions):\n    balance = 0\n    for transaction in transactions:\n        balance += transaction\n        if balance < 0:\n            return True\n    return False\n\n# Test cases\nprint(below_zero([100, -50, -30]))  # Output: False\nprint(below_zero([-20, -40, -60]))  # Output: True\nprint(below_zero([10, 20, 30, -5]))  # Output: True\nprint(below_zero([]))               # Output: False\n```",
+        "PromptUsed": "You're given a list of deposit and withdrawal operations on a bank account that starts with zero balance. Your task is to detect if at any point the balance of account fallls below zero, and at that point function should return. Otherwise it should return False.",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_1.ambiguous": {
+        "GeneratedCode": "def below_zero(operations):\n    \"\"\"\n    Check if any number in the list is less than zero.\n\n    Args:\n    operations (list): A list of numbers.\n\n    Returns:\n    bool: True if there is at least one number less than zero, False otherwise.\n    \"\"\"\n    for num in operations:\n        if num < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\ndef below_zero(operations):\n    \"\"\"\n    Check if any number in the list is less than zero.\n\n    Args:\n    operations (list): A list of numbers.\n\n    Returns:\n    bool: True if there is at least one number less than zero, False otherwise.\n    \"\"\"\n    for num in operations:\n        if num < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "You're given a list of operations. Your task is to handle these operations in a standard way. Function should do what is needed and at some point it should return True or False.",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_1.contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[str]) -> Union[bool, int]:\n    balance = 0\n    for operation in operations:\n        if operation == 'deposit':\n            balance += int(operation.split()[1])\n        elif operation == 'withdrawal':\n            balance -= int(operation.split()[1])\n        if balance < 0:\n            return True\n    return balance",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[str]) -> Union[bool, int]:\n    balance = 0\n    for operation in operations:\n        if operation == 'deposit':\n            balance += int(operation.split()[1])\n        elif operation == 'withdrawal':\n            balance -= int(operation.split()[1])\n        if balance < 0:\n            return True\n    return balance\n```",
+        "PromptUsed": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to return a string \"True\" if at any point the balance of account falls below zero,\n    and at that point function should return a string \"False\". Otherwise the function should return\n    an integer indicating the balance of the account. The function should not use any loops or recursion.\n    The complexity of the function should be O(1). \n    The function should also accept strings as input. It should return a list, if a string is given as input. \n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_2.lexical_vagueness__lv": {
+        "GeneratedCode": "def assess_sequence(items):\n    current_total = 0\n    for change in items:\n        current_total += change\n        if current_total < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\ndef assess_sequence(items):\n    current_total = 0\n    for change in items:\n        current_total += change\n        if current_total < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "def assess_sequence(items):\n    \"\"\" You're given a sequence of changes to a running total that starts at zero. Your task is to check whether at any point the total goes under zero, and if that happens the function should return True. Otherwise it should return False.\n    >>> assess_sequence([1, 2, 3])\n    False\n    >>> assess_sequence([1, 2, -4, 5])\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_2.syntax_and_formatting_sf": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "from typing import Listt\n\n\ndef below_zero(operations: List[int]) -> bool\"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\nzero balanace. Your task is to detect if at any point the balance of account fallls below zero, and\nat that point function should return True. Otherwise it should return False.\n>>> below_zero([1, 2, 3])\nFalse\n>>> below_zero([1, 2, -4, 5])\nTrue\n\"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_2.under-specification_us": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "TASK:\nfrom typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account.\n    Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def below_zero(operations: List[int]) -> bool:\n  \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n  zero balance. Your task is to detect if at any point the balance of account fallls below zero. \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def below_zero(operations: List[int]) -> bool:\n  \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n  a given balance (e.g. positive or zero). Your task is to detect if at any point the balance of account fallls below zero, and\n  at that point function should return True. Otherwise it should return False.\n  >>> below_zero([1, 2, 3])\n  False\n  >>> below_zero([1, 2, -4, 5])\n  False\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def below_zero(operations: List[int]) -> bool:\n  \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n  zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n  at that point function should return True. Otherwise it should return False.\n  >>> below_zero([1, 2, 3])\n  True\n  >>> below_zero([1, 2, -4, 5])\n  False\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    current_balance = 0\n    for operation in operations:\n        current_balance += operation\n        if current_balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def below_zero(operations: List[int]) -> bool:\n  \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n  a given balance (e.g. positive or zero). Your task is to detect if at any point the balance of account fallls below zero, and\n  at that point function should return True. Otherwise it should return False.\n  >>> below_zero([1, 2, 3])\n  True\n  >>> below_zero([1, 2, -4, 5])\n  False\n  \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n```",
+        "PromptUsed": "from typing import List\n \n \n def below_zero(operations: List[int]) -> bool:\n  \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n  a given balance (e.g. positive or zero). Your task is to detect if at any point the balance of account fallls below zero. \"\"\"",
+        "n_Tests": 40,
+        "Tests_Passed": 40,
+        "Pass@1": true,
+        "Eval_Status": "OK"
+      }
+    }
+  },
+  {
+    "task_id": "HumanEval/4",
+    "variants": {
+      "original": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n    \n    return mad\n```",
+        "PromptUsed": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_1.incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate the mean absolute deviation of a list of numbers.\n\n    Args:\n    numbers (List[float]): A list of floating-point numbers.\n\n    Returns:\n    float: The mean absolute deviation of the numbers.\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n\n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(num - mean) for num in numbers]\n\n    # Calculate the mean of the absolute deviations\n    return sum(abs_deviations) / len(abs_deviations)\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    test_cases = [\n        ([1.0, 2.0, 3.0, 4.0], 1.0),\n        ([1.5, 2.5, 3.5, 4.5], 1.0),\n        ([1.0, 2.0, 3.0, 4.0, 5.0], 1.0),\n        ([], 0.0),\n        ([10.0], 0.0)\n    ]\n\n    all_passed = True\n    for inputs, expected in test_cases:\n        result = mean_absolute_deviation(inputs)\n        if not math.isclose(result, expected, rel_tol=1e-9):\n            print(f\"Test failed for input {inputs}. Expected {expected}, got {result}\")\n            all_passed = False\n\n    if all_passed:\n        print(\"All tests passed!\")\n\ncheck_solution()",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate the mean absolute deviation of a list of numbers.\n    \n    Args:\n    numbers (List[float]): A list of floating-point numbers.\n    \n    Returns:\n    float: The mean absolute deviation of the numbers.\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(num - mean) for num in numbers]\n    \n    # Calculate the mean of the absolute deviations\n    return sum(abs_deviations) / len(abs_deviations)\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    test_cases = [\n        ([1.0, 2.0, 3.0, 4.0], 1.0),\n        ([1.5, 2.5, 3.5, 4.5], 1.0),\n        ([1.0, 2.0, 3.0, 4.0, 5.0], 1.0),\n        ([], 0.0),\n        ([10.0], 0.0)\n    ]\n    \n    all_passed = True\n    for inputs, expected in test_cases:\n        result = mean_absolute_deviation(inputs)\n        if not math.isclose(result, expected, rel_tol=1e-9):\n            print(f\"Test failed for input {inputs}. Expected {expected}, got {result}\")\n            all_passed = False\n    \n    if all_passed:\n        print(\"All tests passed!\")\n\ncheck_solution()\n```\n\nThis solution defines a function `mean_absolute_deviation` that calculates the mean absolute deviation of a list of numbers using the Python standard library. It includes a check function with provided data points to verify the correctness of the generated function.",
+        "PromptUsed": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]):\n    \"\"\" For a given set, calculate deviation.\n    The deviation is the average absolute difference between each element and a center.\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "ERROR: NameError: name 'math' is not defined"
+      },
+      "paper_1.ambiguous": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate the mean absolute deviation (MAD) of a list of numbers.\n\n    MAD is the average of the absolute differences between each number in the list\n    and the mean of the list.\n\n    Parameters:\n    - numbers: A list of floating-point numbers.\n\n    Returns:\n    - The mean absolute deviation as a float.\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n\n    # Calculate the absolute deviations\n    abs_deviations = [abs(num - mean) for num in numbers]\n\n    # Calculate the mean of the absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate the mean absolute deviation (MAD) of a list of numbers.\n    \n    MAD is the average of the absolute differences between each number in the list\n    and the mean of the list.\n    \n    Parameters:\n    - numbers: A list of floating-point numbers.\n    \n    Returns:\n    - The mean absolute deviation as a float.\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations\n    abs_deviations = [abs(num - mean) for num in numbers]\n    \n    # Calculate the mean of the absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n    \n    return mad\n```\n\nThis solution defines a function `mean_absolute_deviation` that calculates the mean absolute deviation of a list of numbers using the Python standard library. It first checks if the input list is empty and returns 0.0 if it is. Then, it computes the mean of the numbers, calculates the absolute deviations from this mean, and finally computes the mean of these absolute deviations to get the MAD.",
+        "PromptUsed": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]):\n   \"\"\" For a given set, do some calculation to find how far things are from something.\n    The result should reflect some kind of average difference.\n    \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_1.contradictory": {
+        "GeneratedCode": "from typing import List, Union\n\ndef mean_absolute_deviation(numbers: List[float]) -> Union[float, str]:\n    if not all(isinstance(num, (int, float)) for num in numbers):\n        return \"Error\"\n\n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(num - mean) for num in numbers) / len(numbers)\n    return f\"{mad:.1f}\"",
+        "GeneratedResponse": "```python\nfrom typing import List, Union\n\ndef mean_absolute_deviation(numbers: List[float]) -> Union[float, str]:\n    if not all(isinstance(num, (int, float)) for num in numbers):\n        return \"Error\"\n    \n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(num - mean) for num in numbers) / len(numbers)\n    return f\"{mad:.1f}\"\n```",
+        "PromptUsed": "from typing import List, Union\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> Union[float, str]:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset. Input list can also contain strings. \n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    '1.0'\n    >>> mean_absolute_deviation([1.0, 2.0, '3.0', 4.0])\n    'Error'\n    Note: The function must return the result as a string. The calculation should be performed without using any loop structures.\n    \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "ERROR: TypeError: unsupported operand type(s) for -: 'str' and 'float'"
+      },
+      "paper_2.lexical_vagueness__lv": {
+        "GeneratedCode": "def spread_measure(items):\n    \"\"\"\n    For an input collection of values, work out a kind of average absolute spread\n    around a central point for the data. This is a loose measure of how far\n    entries tend to be from a center (like the mean):\n    MAD = average | x - center |\n    >>> spread_measure([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n\n    # Calculate the mean of the items\n    mean = sum(items) / len(items)\n\n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean) for x in items]\n\n    # Calculate the average of these absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad",
+        "GeneratedResponse": "```python\ndef spread_measure(items):\n    \"\"\"\n    For an input collection of values, work out a kind of average absolute spread\n    around a central point for the data. This is a loose measure of how far\n    entries tend to be from a center (like the mean):\n    MAD = average | x - center |\n    >>> spread_measure([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n\n    # Calculate the mean of the items\n    mean = sum(items) / len(items)\n\n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean) for x in items]\n\n    # Calculate the average of these absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad\n```",
+        "PromptUsed": "def spread_measure(items):\n    \"\"\" For an input collection of values, work out a kind of average absolute spread\n    around a central point for the data. This is a loose measure of how far\n    entries tend to be from a center (like the mean):\n    MAD = average | x - center |\n    >>> spread_measure([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_2.syntax_and_formatting_sf": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absoulte_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absoulte_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n    \n    return mad\n```",
+        "PromptUsed": "from typing import Lsit\n\n\ndef mean_absoulte_deviation(numbers: List[float]) -> float\n\"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_2.under-specification_us": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case).\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    mean = sum(numbers) / len(numbers)\n    deviations = [abs(x - mean) for x in numbers]\n    return sum(deviations) / len(deviations)\n\n# Test the function\nprint(mean_absolute_deviation([1.0, 2.0, 3.0, 4.0]))  # Output: 1.0",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case).\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    mean = sum(numbers) / len(numbers)\n    deviations = [abs(x - mean) for x in numbers]\n    return sum(deviations) / len(deviations)\n\n# Test the function\nprint(mean_absolute_deviation([1.0, 2.0, 3.0, 4.0]))  # Output: 1.0\n```",
+        "PromptUsed": "TASK:\nfrom typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case).\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate Mean Absolute Deviation (MAD) for a given list of input numbers.\n\n    MAD is defined as the average of the absolute differences between each number in the list\n    and the mean of the list.\n\n    Parameters:\n    - numbers: A list of floating-point numbers.\n\n    Returns:\n    - The Mean Absolute Deviation of the numbers.\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n\n    # Calculate the absolute deviations\n    abs_deviations = [abs(num - mean) for num in numbers]\n\n    # Calculate the mean of the absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate Mean Absolute Deviation (MAD) for a given list of input numbers.\n    \n    MAD is defined as the average of the absolute differences between each number in the list\n    and the mean of the list.\n    \n    Parameters:\n    - numbers: A list of floating-point numbers.\n    \n    Returns:\n    - The Mean Absolute Deviation of the numbers.\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations\n    abs_deviations = [abs(num - mean) for num in numbers]\n    \n    # Calculate the mean of the absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n    \n    return mad\n```\n\nThis solution defines a function `mean_absolute_deviation` that calculates the Mean Absolute Deviation for a given list of numbers using the Python standard library. It first checks if the list is empty to avoid division by zero. Then, it computes the mean of the numbers, calculates the absolute deviations from this mean, and finally computes the mean of these absolute deviations to get the MAD.",
+        "PromptUsed": "from typing import List\n \n \n def mean_absolute_deviation(numbers: List[float]) -> float:\n  \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation. \n \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around a certain attribute (e.g. max or mean or other) of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (e.g. max or mean in this case):\n    MAD = average | x - (e.g. max or mean or other) |\n\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    # Calculate the mean of the numbers\n    mean_value = sum(numbers) / len(numbers)\n\n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean_value) for x in numbers]\n\n    # Calculate the Mean Absolute Deviation\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around a certain attribute (e.g. max or mean or other) of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (e.g. max or mean in this case):\n    MAD = average | x - (e.g. max or mean or other) |\n\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean_value = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean_value) for x in numbers]\n    \n    # Calculate the Mean Absolute Deviation\n    mad = sum(abs_deviations) / len(abs_deviations)\n    \n    return mad\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(numbers: List[float]) -> float:\n  \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n  around a certain attribute (e.g. max or mean or other) of this dataset.\n  Mean Absolute Deviation is the average absolute difference between each\n  element and a centerpoint (e.g. max or mean in this case):\n  MAD = average | x - (e.g. max or mean or other) |\n  >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n  1.0\n  \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate Mean Absolute Deviation around the mean of the dataset.\n\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n\n    :param numbers: List of input numbers\n    :return: Mean Absolute Deviation as a float\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    # Calculate the mean of the numbers\n    mean_value = sum(numbers) / len(numbers)\n\n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean_value) for x in numbers]\n\n    # Calculate the mean of these absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate Mean Absolute Deviation around the mean of the dataset.\n    \n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    \n    :param numbers: List of input numbers\n    :return: Mean Absolute Deviation as a float\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean_value = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean_value) for x in numbers]\n    \n    # Calculate the mean of these absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n    \n    return mad\n```\n\nThis solution defines a function `mean_absolute_deviation` that calculates the Mean Absolute Deviation of a list of numbers. It first checks if the list is empty to avoid division by zero. Then, it computes the mean of the numbers. After that, it calculates the absolute differences between each number and the mean, sums these differences, and finally divides by the count of numbers to get the Mean Absolute Deviation.",
+        "PromptUsed": "from typing import List\n \n \n def mean_absolute_deviation(numbers: List[float]) -> float:\n  \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n  around the mean of this dataset.\n  Mean Absolute Deviation is the average absolute difference between each\n  element and a centerpoint (mean in this case):\n  MAD = average | x - x_mean |\n  >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n  1.5\n  \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_contradictory": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around a certain attribute (e.g. max or mean or other) of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (e.g. max or mean in this case):\n    MAD = average | x - (e.g. max or mean or other) |\n\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.5\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    # Calculate the mean of the numbers\n    mean_value = sum(numbers) / len(numbers)\n\n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean_value) for x in numbers]\n\n    # Calculate the Mean Absolute Deviation\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around a certain attribute (e.g. max or mean or other) of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (e.g. max or mean in this case):\n    MAD = average | x - (e.g. max or mean or other) |\n\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.5\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean_value = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean_value) for x in numbers]\n    \n    # Calculate the Mean Absolute Deviation\n    mad = sum(abs_deviations) / len(abs_deviations)\n    \n    return mad\n```",
+        "PromptUsed": "from typing import List\n \n \n def candidate(numbers: List[float]) -> float:\n  \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n  around a certain attribute (e.g. max or mean or other) of this dataset.\n  Mean Absolute Deviation is the average absolute difference between each\n  element and a centerpoint (e.g. max or mean in this case):\n  MAD = average | x - (e.g. max or mean or other) |\n  >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n  1.5\n  \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.ambiguous_and_incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    MAD = average | x - (e.g. max or mean or other) |\n\n    :param numbers: List of input numbers\n    :return: Mean Absolute Deviation\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n\n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean) for x in numbers]\n\n    # Calculate the mean of the absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n\n    return mad",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    MAD = average | x - (e.g. max or mean or other) |\n\n    :param numbers: List of input numbers\n    :return: Mean Absolute Deviation\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations from the mean\n    abs_deviations = [abs(x - mean) for x in numbers]\n    \n    # Calculate the mean of the absolute deviations\n    mad = sum(abs_deviations) / len(abs_deviations)\n    \n    return mad\n```\n\nThis solution defines a function `candidate` that calculates the Mean Absolute Deviation (MAD) of a list of numbers. It first checks if the list is empty and returns 0.0 if it is. Then, it computes the mean of the numbers using the formula for the mean. Next, it calculates the absolute deviations from the mean for each number in the list. Finally, it computes the mean of these absolute deviations to get the MAD. The function returns this value as the result.",
+        "PromptUsed": "from typing import List\n \n \n def candidate(numbers: List[float]) -> float:\n  \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n  MAD = average | x - (e.g. max or mean or other) |\n \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "OK"
+      },
+      "paper_3.contradictory_and_incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate Mean Absolute Deviation for a given list of input numbers.\n\n    Args:\n    numbers (List[float]): A list of floating-point numbers.\n\n    Returns:\n    float: The Mean Absolute Deviation of the numbers.\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    mean = sum(numbers) / len(numbers)\n    deviations = [abs(x - mean) for x in numbers]\n    return sum(deviations) / len(deviations)\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    test_cases = [\n        ([1.0, 2.0, 3.0, 4.0], 1.5),\n        ([10.0, 20.0, 30.0, 40.0], 10.0),\n        ([], 0.0),\n        ([1.0, 1.0, 1.0, 1.0], 0.0),\n        ([1.5, 2.5, 3.5, 4.5], 1.0)\n    ]\n\n    all_passed = True\n    for inputs, expected in test_cases:\n        result = mean_absolute_deviation(inputs)\n        if not math.isclose(result, expected, rel_tol=1e-9):\n            print(f\"Test failed for input {inputs}. Expected {expected}, got {result}\")\n            all_passed = False\n\n    if all_passed:\n        print(\"All tests passed!\")\n\ncheck_solution()",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    Calculate Mean Absolute Deviation for a given list of input numbers.\n    \n    Args:\n    numbers (List[float]): A list of floating-point numbers.\n    \n    Returns:\n    float: The Mean Absolute Deviation of the numbers.\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    mean = sum(numbers) / len(numbers)\n    deviations = [abs(x - mean) for x in numbers]\n    return sum(deviations) / len(deviations)\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    test_cases = [\n        ([1.0, 2.0, 3.0, 4.0], 1.5),\n        ([10.0, 20.0, 30.0, 40.0], 10.0),\n        ([], 0.0),\n        ([1.0, 1.0, 1.0, 1.0], 0.0),\n        ([1.5, 2.5, 3.5, 4.5], 1.0)\n    ]\n    \n    all_passed = True\n    for inputs, expected in test_cases:\n        result = mean_absolute_deviation(inputs)\n        if not math.isclose(result, expected, rel_tol=1e-9):\n            print(f\"Test failed for input {inputs}. Expected {expected}, got {result}\")\n            all_passed = False\n    \n    if all_passed:\n        print(\"All tests passed!\")\n\ncheck_solution()\n```\n\nThis solution defines a function `mean_absolute_deviation` that calculates the Mean Absolute Deviation of a list of numbers. It first computes the mean of the numbers, then calculates the absolute deviation of each number from the mean, sums these deviations, and finally divides by the count of numbers to get the Mean Absolute Deviation. The `check_solution` function is used to verify the correctness of the solution with various test cases.",
+        "PromptUsed": "from typing import List\n \n \n def mean_absolute_deviation(numbers: List[float]) -> float:\n  \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation. \n  >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n  1.5\n  \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "ERROR: NameError: name 'math' is not defined"
+      },
+      "paper_3.ambiguous_contradictory_and_incomplete": {
+        "GeneratedCode": "from typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation.\n\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.5\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    mean = sum(numbers) / len(numbers)\n    deviations = [abs(x - mean) for x in numbers]\n    return sum(deviations) / len(deviations)\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    assert candidate([1.0, 2.0, 3.0, 4.0]) == 1.5, \"Test case 1 failed\"\n    assert candidate([10.0, 20.0, 30.0, 40.0]) == 10.0, \"Test case 2 failed\"\n    assert candidate([-1.0, -2.0, -3.0, -4.0]) == 1.0, \"Test case 3 failed\"\n    assert candidate([]) == 0.0, \"Test case 4 failed\"\n    print(\"All test cases passed!\")\n\ncheck_solution()",
+        "GeneratedResponse": "```python\nfrom typing import List\n\ndef candidate(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation.\n    \n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.5\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    mean = sum(numbers) / len(numbers)\n    deviations = [abs(x - mean) for x in numbers]\n    return sum(deviations) / len(deviations)\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    assert candidate([1.0, 2.0, 3.0, 4.0]) == 1.5, \"Test case 1 failed\"\n    assert candidate([10.0, 20.0, 30.0, 40.0]) == 10.0, \"Test case 2 failed\"\n    assert candidate([-1.0, -2.0, -3.0, -4.0]) == 1.0, \"Test case 3 failed\"\n    assert candidate([]) == 0.0, \"Test case 4 failed\"\n    print(\"All test cases passed!\")\n\ncheck_solution()\n```\n\nThis solution defines a function `candidate` that calculates the Mean Absolute Deviation (MAD) of a list of numbers. It first checks if the list is empty and returns 0.0 if true. Otherwise, it computes the mean of the numbers, then calculates the absolute deviation of each number from the mean, sums these deviations, and finally divides by the count of numbers to get the MAD. The `check_solution` function tests various scenarios to ensure the correctness of the implementation.",
+        "PromptUsed": "from typing import List\n \n \n def candidate(numbers: List[float]) -> float:\n  \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation. >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n  1.5\n  \"\"\"",
+        "n_Tests": 39,
+        "Tests_Passed": 0,
+        "Pass@1": false,
+        "Eval_Status": "ERROR: AssertionError: Test case 1 failed"
+      }
+    }
+  }
+]
